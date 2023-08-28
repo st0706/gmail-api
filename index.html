@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gmail API</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/5258df02df.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="navBar" class="navbar hidden">
+    <button class="nav-button" onclick="goToSendMessage()">Send Email</button>
+    <button class="inoutbutton" id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+  </div>
+  <!-- Add buttons to initiate auth sequence and sign out -->
+  <button class="inoutbutton" id="authorize_button" onclick="handleAuthClick()">Sign in with Google</button>
+
+  <!-- Form send email  -->
+  <div class="send-email">
+    <form onsubmit="submitMessageForm(event)" enctype="multipart/form-data" action="" id="send_message_form">
+      <div class="form-head">
+        <i class="fa-solid fa-circle-xmark" id="closeForm"></i>
+      </div>
+      <h1>Send new message</h1>
+      <div class="input-box">
+        <!-- <label for="">To</label> -->
+        <input type="email" placeholder="To" id="recipient_email" name="recipient_email" required>
+      </div>
+
+      <div class="input-box">
+        <!-- <label for="">Title</label> -->
+        <input type="text" placeholder="Subject" id="subject" name="subject" required>
+      </div>
+
+      <div class="input-box">
+        <textarea name="message" placeholder="Description..." id="message" cols="30" rows="10"></textarea>
+      </div>
+
+      <div class="attachment">
+        <label for="attachment">Attachment:</label>
+        <input type="file" id="attachment" name="attachment">
+      </div>
+
+      <div class="send-button">
+        <button type="submit" id="sendEmail">Send</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add a container to display email previews -->
+  <div id="email_previews"></div>
+
+  <script src="app.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+</body>
+
+</html>
